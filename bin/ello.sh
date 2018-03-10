@@ -9,7 +9,7 @@ for l in `curl -s "https://ello.co" | grep "/post/" | cut -d\" -f2` ; do
   #-- store each match
   html=$(curl -s "${l}")
   
-  #-- pull out the details per post
+  #-- pull out the details per post (title/author/image/tags/like/views)
   author=$(echo "${html}" | grep "Post by" | cut -d\" -f3 | cut -d\  -f1 | sed 's/^.//g')
   author_url=$(echo "${html}" | grep "Post by" | cut -d\" -f2)
   title=$(echo "${html}" | grep "og:description" | cut -d\" -f4 | sed 's/\&amp\;/&/g ; s/\&quot\;/\"/g ; s/\&\#39\;/'\''/g')

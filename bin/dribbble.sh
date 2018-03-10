@@ -18,7 +18,7 @@ function parse_html {
     #-- store each match
     html=$(curl -s "https://dribbble.com${l}")
     
-    #-- pull out the details per shot
+    #-- pull out the details per shot (title/info/author/date/image/colors/tags/like/views/email)
     title=$(echo "${html}" | grep "og:title" | cut -d\" -f4 | sed 's/\&amp\;/&/g')
     info=$(echo "${html}" | grep -A 1 "shot-desc" | tail -1 | cut -d\> -f2 | sed 's/...$//g' | sed 's/\&amp\;/&/g')
     author=$(echo "${html}" | grep "rel=\"contact\"" | head -1 | cut -d\" -f6)
